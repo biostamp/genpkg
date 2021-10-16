@@ -1,4 +1,4 @@
-import { homedir } from 'node:os'
+import { homedir } from 'os'
 
 /**
  * Checks if the given value is a path to a local file.

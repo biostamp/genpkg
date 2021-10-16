@@ -1,5 +1,5 @@
-import { resolve } from 'node:path'
-import { existsSync } from 'node:fs'
+import { resolve } from 'path'
+import { existsSync } from 'fs'
 import {expect, test} from '@oclif/test'
 
 import cmd = require('../src')
