@@ -300,20 +300,23 @@ class Genpkg extends Command {
     }
 
     // render template
-    metalsmith
-      .use(this.askQuestions(opts.prompts))
-      .use(this.renderTemplateFiles())
-      .clean(false)
-      .source('.')
-      .destination(path.resolve(dest))
-      .build((err: any) => {
-        if (err) {
-          throw err
-        }
+    return new Promise((resolve, reject) => {
+      metalsmith
+        .use(this.askQuestions(opts.prompts))
+        .use(this.renderTemplateFiles())
+        .clean(false)
+        .source('.')
+        .destination(path.resolve(dest))
+        .build((err: any) => {
+          if (err) {
+            reject(err)
+          }
 
-        // show complete message
-        this.logMessage(opts.completeMessage, data)
-      })
+          // show complete message
+          this.logMessage(opts.completeMessage, data)
+          resolve()
+        })
+    })
   }
 
   /**
