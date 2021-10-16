@@ -205,8 +205,10 @@ class Genpkg extends Command {
       }
 
       done(null, {}, metalsmith)
-    } catch (error) {
-      done(error, {}, metalsmith)
+    } catch (error: unknown) {
+      if (error instanceof Error) {
+        done(error, {}, metalsmith)
+      }
     }
   }
 
@@ -330,12 +332,16 @@ class Genpkg extends Command {
       try {
         // generate the package
         await this.generatePackage(templatePath, args.dirname || '.')
-      } catch (error) {
-        this.error(`unable to generate template.\n${error.message}`)
+      } catch (error: unknown) {
+        if (error instanceof Error) {
+          this.error(`unable to generate template.\n${error.message}`)
+        }
       }
-    } catch (error) {
-      // log the error
-      this.error(`unable to get template from: ${flags.template}.\n${error.message}`)
+    } catch (error: unknown) {
+      if (error instanceof Error) {
+        // log the error
+        this.error(`unable to get template from: ${flags.template}.\n${error.message}`)
+      }
     }
 
     this.log('generated package successfuly')
