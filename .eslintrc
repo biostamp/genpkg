@@ -2,5 +2,21 @@
   "extends": [
     "oclif",
     "oclif-typescript"
-  ]
+  ],
+  "rules": {
+    "object-curly-spacing": 0,
+    "operator-linebreak": 0,
+    "indent": [
+      "error",
+      2,
+      {
+        "MemberExpression": 1
+      }
+    ],
+    "unicorn/prefer-module": 0,
+    "unicorn/no-array-for-each": 0,
+    "arrow-parens": ["error", "always"],
+    "unicorn/prefer-node-protocol": 0,
+    "unicorn/import-style": 0
+  }
 }
